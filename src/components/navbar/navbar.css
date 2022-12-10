@@ -1,0 +1,51 @@
+.navbar {
+    height: 80px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navContainer {
+    width: 100%;
+    max-width: 1300px;
+    color: #148bed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.logoNavbar {
+    width: 200px;
+    
+}
+.btnDN{
+    background-color: #ECECEE;
+    font-size: large;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.btnDN:hover{
+    color: tomato;
+}
+.btnDK{
+    color: black;
+    background: linear-gradient(to right,#F9B500, #FDCE00);;
+    font-size: large;
+    font-weight: bold;
+}
+.btnDK:hover{
+    background: #FDCE00;
+}
+
+.navBarImgUser {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}

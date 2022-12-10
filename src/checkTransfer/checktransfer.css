@@ -1,0 +1,60 @@
+.checkTransferPage{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+}
+.checkTransferContainer{
+    width: 100%;
+    height: calc(100vh - 80px);
+    max-width: 1440px;
+    display: flex;
+    
+    align-items: center;
+    flex-direction: column;
+}
+
+.checkTransferWraper{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 245, 245);
+    margin-top: 10px;
+    border-radius: 20px;
+    z-index: 100;
+}
+
+.checkTransferStyleInput{
+    width: 350px;
+    height: 45px;
+    display: flex;
+    margin-top: 20px;
+    justify-content: start;
+    align-items: center;
+}
+    .checkTransferStyleInput a {
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        line-height: 28px;
+    }
+        .checkTransferStyleInput a svg {
+            width: 50px;
+            height: 30px;
+        }
+
+.checkTransferSubmit{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textErrorMsg{
+    color: tomato;
+}

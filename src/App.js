@@ -4,6 +4,7 @@ import Transfer from "./transfer/Transfer";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import CheckTransfer from "./checkTransfer/checkTransfer";
+import ConfirmTransfer from "./confirmTransfer/ConfirmTransfer";
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/transfer" element={<Transfer />} /> 
           <Route path="/checktransfer" element={<CheckTransfer />} /> 
+          <Route path="/confirmtransfer" element={<ConfirmTransfer />} /> 
         </Routes>
         <Footer/>
       </div>

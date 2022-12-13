@@ -1,5 +1,5 @@
 .transferPage{
-    margin-top: 80px;
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -15,7 +15,7 @@
     flex-direction: column;
 }
 
-.tranferWraper{
+.transferWraper{
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -29,16 +29,20 @@
 
 .transferStyleInput{
     width: 350px;
-    height: 45px;
     display: flex;
-    background-color: #F0F0F0;
+    flex-direction: column;
     margin-top: 20px;
     justify-content: start;
-    align-items: center;
-    border-radius: 20px;
-    border: 1px solid rgb(127, 125, 125);
+   
 }
-
+.transferStyleInput>input{
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+}
+textarea{
+    border-radius: 20px;
+}
 .transferSubmit{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -47,7 +51,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.btnTransfer{
+    background: linear-gradient(to right,#F9B500, #FDCE00);
+}
 .textErrorMsg{
     color: tomato;
 }

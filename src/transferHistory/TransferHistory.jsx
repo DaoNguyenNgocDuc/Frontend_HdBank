@@ -14,13 +14,13 @@ function TransferHistory() {
     const [error, setError] = useState("");
     const [errorAcct, setErrorAcct] = useState("");
     const [tranHis, setTranHis] = useState([]);
-    const url = "https://7ucpp7lkyl.execute-api.ap-southeast-1.amazonaws.com/dev/transfer";
+    const url = "https://7ucpp7lkyl.execute-api.ap-southeast-1.amazonaws.com/dev/tranhis";
 
     const config = {
         "headers": {
             'accept': 'application/json',
             'Content-Type': 'application/json',
-            "access-token": "eyJraWQiOiJXcDRGMndiQVpMa1d2WWgyNDhnYjNtUHBLRzZTdDRNcG85Tmc3U2diZ2E0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJiMjcwMzA4MS0zMTA2LTRmOWUtYWE4Zi0zZGYyMGVmN2I3MWUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLXNvdXRoZWFzdC0xLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoZWFzdC0xX1FiMVE4VFBzVSIsImNvZ25pdG86dXNlcm5hbWUiOiJiMjcwMzA4MS0zMTA2LTRmOWUtYWE4Zi0zZGYyMGVmN2I3MWUiLCJvcmlnaW5fanRpIjoiNWE4ZmVhZTYtZjdlZC00MGY4LThmNWQtYzdiN2U1OTYxNTFiIiwiYXVkIjoic2lrY25laTR0MmgzbnRrcWo1ZDQ5bHR2ciIsImV2ZW50X2lkIjoiNTYzODJmNjQtMjI1Yi00YzQ5LWJiYmUtM2ZlNjIzMGI2MmQ3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2Njk2MTc5OTAsIm5hbWUiOiJOZ8O0IFRyw60gVHLGsOG7nW5nIiwiZXhwIjoxNjcwNTYzNzQwLCJpYXQiOjE2NzA0NzczNDAsImp0aSI6IjU5MTZmMzE3LTJkNDAtNGJkMy05ZTMzLTc1ODY0YWM2Y2E1MCIsImVtYWlsIjoidHJ1b25namFjazI4MDZAZ21haWwuY29tIn0.YmmVA8bxFkh1K-TICkeynhposXkDLdjtKYWpLc9IXyoD3sVDFdjDfqB8kDPtPjAhFSiR8zCdrStzx_ggGgmuno8Nhq4VwcxN1WfQgUUGhsYVgmSfjwnaXffBEaIW-h4koDtGNG9gy-vaavqsHP_VOTDE_SS0TzbYmyO-0L7CDaR-PLYYg1jWXQaEq0YMldnYXb9nMf2kyHR_XZSvqu7Yu4g8gJ-GJ3AdIWhZbCf1w_tpWyH1CI_iFL5MM4S3xj4RhYB9yWGWyxrChq_mijsrqyyu7op_LymqjtspfQI57FcHD0bM6pRMTN0GK5tUaXkgZbBwGEd4VyJK-egdfsIsog",
+            "access-token": "eyJraWQiOiJXcDRGMndiQVpMa1d2WWgyNDhnYjNtUHBLRzZTdDRNcG85Tmc3U2diZ2E0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzYTQxMDQyOS03NWJkLTQwYTgtYmQwYy0xMTUyNzZiZWYyNDEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLXNvdXRoZWFzdC0xLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoZWFzdC0xX1FiMVE4VFBzVSIsImNvZ25pdG86dXNlcm5hbWUiOiIzYTQxMDQyOS03NWJkLTQwYTgtYmQwYy0xMTUyNzZiZWYyNDEiLCJvcmlnaW5fanRpIjoiN2QwY2YwNjAtYThlOC00ZmUxLWIyZDMtN2M3NmRjMGZkYTU5IiwiYXVkIjoic2lrY25laTR0MmgzbnRrcWo1ZDQ5bHR2ciIsImV2ZW50X2lkIjoiNTI5MTJiYTAtYTUxNS00ZWVkLTkzMjEtZDcxNmZiMTBjYmMxIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2Njk2NzkyMTksIm5hbWUiOiLEkMOgbyBOZ3V54buFbiBOZ-G7jWMgxJDhu6ljIiwiZXhwIjoxNjcxMTEwNjM1LCJpYXQiOjE2NzEwMjQyMzUsImp0aSI6IjM5MjEyNjNiLTFhOTAtNDk0OS1iZmNiLTM1YmYxMmY5NmY4NSIsImVtYWlsIjoiZGFvZHVjMTMyQGdtYWlsLmNvbSJ9.zFwRbRxzp5S-fHCmhj05oxiw53-QvxZAj-WlG1Ut8ThMLUS8YWZHpgQEpETC5KIjSF2IPvccUc_2DWabLtXIApctEdURklIB367pokVPE-Qdyuy1CfVdgb2UE1l3FYU-3tB7fWj30Y-ro4kXF5e9KXCFReZwT9TlokuruYGfl6fRKj5EvXhEBltXlzXwG4MQrMhh5osXyCuwyK-0m898dkUzzgIk39_wBhqLMuHcgsrbpkj1xeshPvAorrwlUD52toQpNQNfOUkpTnbZ8m7P0dw_qp18SgIebVoEFpL4uHIOYZZJ-dqn1Vq9OBVhp4LWkYV9OlI2TE9nqo8VXGsI1Q",
             "x-api-key": "hutech_hackathon@123456"
         }
     };
@@ -30,14 +30,14 @@ function TransferHistory() {
         if(acctNo.length <6 || acctNo.length>15) {
             document.getElementById("accountid").focus();
         } else {
-            let miliseconddiff = moment(toDate).diff(moment(fromDate));
+            let miliseconddiff = moment(toDate,"DDMMYYYY").diff(moment(fromDate,"DDMMYYYY"));
             let daydiff = moment.duration(miliseconddiff).asDays();
             if(miliseconddiff < 0) {
                 //fromdate must less than todate
                 setError("Ngày bắt đầu phải nhỏ hơn!!!");
-            } else if(daydiff > 10) {
-                //max 10 day diff
-                setError("Khoảng cách giữa hai ngày tối đa là 10 ngày!!");
+            } else if(daydiff > 9) {
+                //less than 10 day diff
+                setError("Khoảng cách giữa hai ngày phải nhỏ hơn 10 ngày!!");
             } else {
                 //call api
                 setError("");
@@ -55,16 +55,19 @@ function TransferHistory() {
 
                 axios.post(url, JSON.stringify(values), config)
                 .then(res => {
-                    console.log(res);
+                    console.log(res.data);
                     if( res.data.response.responseCode === '00'){
                         //thanh cong
                         setError("");
-                        setTranHis();
+                        setTranHis(res.data.transHis);
                     } else if(res.data.response.responseCode === '01') {
                         //Unauthorized
                         setError("Bạn chưa đăng nhập");
-                    } else if(res.data.response.responseCode === '03') {
+                    } else if(res.data.response.responseCode === '03' && res.data.response.responseMessage === "Format message invalid, fromDate format invalid, distance of date must less than 10") {
                         //Format message invalid
+                        setError("Khoảng cách giữa hai ngày phải nhỏ hơn 10 ngày!!");
+                    } else if(res.data.response.responseCode === '03') {
+                        //less than 10 day diff
                         setError("Dữ liệu sai định dạng");
                     } else if(res.data.response.responseCode === '07') {
                         //BankAccount not found
@@ -113,14 +116,14 @@ function TransferHistory() {
                         </div>
                         <div className='transferStyleInput'>
                             <label>Từ ngày</label>
-                            <input type="datetime-local" name="fromdate" id="fromdate" required
-                                onChange={(e) => setFromDate(e.target.value)} />
+                            <input type="date" name="fromdate" id="fromdate" required
+                                onChange={(e) => setFromDate(moment(e.target.value).format("DDMMYYYY"))} />
                         </div>
 
                         <div className='transferStyleInput'>
                             <label>Lời nhắn</label>
-                            <input type="datetime-local" name="todate" id="todate" required
-                                onChange={(e) => setToDate(e.target.value)} />
+                            <input type="date" name="todate" id="todate" required
+                                onChange={(e) => setToDate(moment(e.target.value).format("DDMMYYYY"))} />
                         </div>
                     </form>
                 </div>

@@ -14,6 +14,7 @@ function TransferHistory() {
     const [error, setError] = useState("");
     const [errorAcct, setErrorAcct] = useState("");
     const [tranHis, setTranHis] = useState([]);
+    
     const url = "https://7ucpp7lkyl.execute-api.ap-southeast-1.amazonaws.com/dev/tranhis";
 
     const config = {
@@ -55,11 +56,11 @@ function TransferHistory() {
 
                 axios.post(url, JSON.stringify(values), config)
                 .then(res => {
-                    console.log(res.data);
+                    console.log(res.data.data.transHis);
                     if( res.data.response.responseCode === '00'){
                         //thanh cong
                         setError("");
-                        setTranHis(res.data.transHis);
+                        setTranHis(res.data.data.transHis);
                     } else if(res.data.response.responseCode === '01') {
                         //Unauthorized
                         setError("Bạn chưa đăng nhập");
@@ -95,13 +96,13 @@ function TransferHistory() {
     }
 
     return (
-        <div className='transferPage'>   
-            <div className='transferContainer'>
-                <div className='transferWraper'>
+        <div className='transferHistoryPage'>   
+            <div className='transferHistoryContainer'>
+                <div className='transferHistoryWraper'>
                     <h2>Liệt kê các giao dịch ngân hàng điện tử</h2>
                     <span className='textErrorMsg'>{error}</span>
                     <form onSubmit={handleSubmit}>
-                        <div className='transferStyleInput'>
+                        <div className='transferHistoryStyleInput'>
                             <label>Số tài khoản</label>
                             <span className='textErrorMsg'>{errorAcct}</span>
                             <input type="number" name="accountid" id="accountid" required
@@ -112,20 +113,29 @@ function TransferHistory() {
                                     } else
                                         setErrorAcct("");
                                 }} />
-                            <button type="submit" className='btnButton btnTransfer'>Truy vấn</button>
+                            <button type="submit" className='btnButton btnTransferHistory'>Truy vấn</button>
                         </div>
-                        <div className='transferStyleInput'>
+                        <div className='transferHistoryStyleInput'>
                             <label>Từ ngày</label>
                             <input type="date" name="fromdate" id="fromdate" required
                                 onChange={(e) => setFromDate(moment(e.target.value).format("DDMMYYYY"))} />
                         </div>
 
-                        <div className='transferStyleInput'>
+                        <div className='transferHistoryStyleInput'>
                             <label>Lời nhắn</label>
                             <input type="date" name="todate" id="todate" required
                                 onChange={(e) => setToDate(moment(e.target.value).format("DDMMYYYY"))} />
                         </div>
                     </form>
+
+                    <div>
+                        <ul>
+                            {
+                                tranHis.map((item,i) => <li key={i}>{item.transDesc} - {item.transDate} - {item.transAmount}</li>)
+                            }
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
         </div>

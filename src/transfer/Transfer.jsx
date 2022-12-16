@@ -28,6 +28,8 @@ function Transfer() {
         e.preventDefault();
         if(toAcc.length <6 || toAcc.length>15) {
             setErrorAcct("Số tài khoản trong khoảng từ 6 đến 15 ký tự!!!");
+        }else if(description.length >= 151) {
+            setErrorDescription("Lời nhắn không dài quá 150 ký tự!!!")
         } else {
             const values = {
                 data: {
